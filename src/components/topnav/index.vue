@@ -90,7 +90,7 @@ export default {
   align-items: center;
 
   img {
-    height: 3rem;
+    height:3rem;
     margin-left: 2rem;
   }
   #logo {
@@ -105,9 +105,9 @@ export default {
   }
   ul {
     margin-left: 2rem;
-    flex: 1;
+    flex: 1 0 6rem;
     img {
-      height: 1.3rem;
+      height: 1.3rem ;
       margin-left: 0rem;
     }
   }
