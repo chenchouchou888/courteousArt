@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <el-carousel height="32rem" type="card">
+    <el-carousel height="32rem" type="card" >
       <el-carousel-item v-for="(item, index) in imgList" :key="index">
         <img :src="item" alt="" />
       </el-carousel-item>
@@ -81,5 +81,8 @@ h2 {
 .el-carousel {
   width: 80%;
   margin: 0 auto;
+  img{
+    width: 100%;
+  }
 }
 </style>

@@ -17,7 +17,7 @@
 export default {
   data() {
     return {
-     
+     isChange:false
     };
   },
 
@@ -38,7 +38,7 @@ export default {
 
       const renderer = new THREE.WebGLRenderer();
       renderer.setClearColor("#fff", 1.0);
-      renderer.setSize(600, 600);
+      renderer.setSize(window.screen.width/5,window.screen.height/2.6);
       document.querySelector(".for3d").appendChild(renderer.domElement);
       const geometry = new THREE.BoxGeometry(5, 4, 0.2);
       let material = new THREE.MeshBasicMaterial({
@@ -57,14 +57,24 @@ export default {
           cube.rotation.y += 0.01;
         }
         renderer.render(scene, camera);
+        if(that.isChange)
+        {
         material.map = new THREE.TextureLoader().load(that.$store.state.home.imgUrl)
-      }
+        that.isChange = false
+     
+        }
+       }
       animate();
     },
   },
   mounted() {
     this.create3d();
   },
+  watch:{
+      '$store.state.home.imgUrl'(){
+          this.isChange = true
+      }
+  }
 };
 </script>
 
