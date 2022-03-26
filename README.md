@@ -1,24 +1,7 @@
 # courteous-art
 
-## Project setup
-```
-npm install
-```
+## 这是作者用来练习
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+##布局 资源加载
+##vuex vue-router 组件传值...的
+##nft商城项目  资源为静态/mock.js生成
