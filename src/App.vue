@@ -3,19 +3,16 @@
     <carddetail></carddetail>
     <topNav></topNav>
     <router-view></router-view>
-    <myFooter></myFooter>
   </div>
 </template>
 
 <script>
 import topNav from './components/topnav'
-import myFooter from './components/footer'
 import carddetail from './components/carddetail'
 export default {
   name: 'App',
   components: {
     topNav,
-    myFooter,
     carddetail
   }
 }
@@ -29,6 +26,12 @@ export default {
   color: #2c3e50;
   overflow: hidden;
 }
+
+   @media screen and (max-width: 538px) {
+      html{
+      font-size: 10px;
+    }
+  }
 
 
 

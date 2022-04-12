@@ -1,22 +1,31 @@
 <template>
   <div class="home">
-    <el-carousel height="32rem" type="card" >
+    <el-carousel height="24rem" type="card" >
       <el-carousel-item v-for="(item, index) in imgList" :key="index">
         <img :src="item" alt="" />
       </el-carousel-item>
     </el-carousel>
+
+
     <h2>精选系列</h2>
     <div class="series">
-      <card  @click.native="details(item)" v-for="item in cardList" :item="item"></card>
+      <card  v-for="item in cardList" :item="item" ></card>
     </div>
+
+    
+    <myfooter></myfooter>
   </div>
+
 </template>
 
 <script>
 import card from "@/components/card";
+import myfooter from "@/components/footer"
+import { reqGetHandReuslt } from '@/api';
 export default {
   data() {
     return {
+      imageUrl: '',
       imgList: ["./imgs/1.png", "./imgs/2.png", "./imgs/3.png"],
       cardList:[
         {
@@ -38,21 +47,22 @@ export default {
   },
   components: {
     card,
+    myfooter
   },
   methods:{
-    async details(item){
-      console.log(item)
-      await this.$store.dispatch('changeIntroduce',item)
-      await this.$store.dispatch('changeDetailShow')
-
-      
-
-    }
-  }
+    
+  },
+ 
+  
+  
+  
 };
 </script>
 
 <style scoped lang="less">
+.el-carousel-item{
+  height: 43rem;
+}
 h2 {
   margin: 0 auto;
   margin-top: 1rem;

@@ -2,9 +2,9 @@
   <div class="navWrapper">
     <img id="logo" src="./imgs/cclogo.png" alt="logo" @click="toHome" />
     <ul>
-      <li @click="toHome" :class="{ deep: $route.path == '/home' }">首页</li>
+      <li @click="toHome" :class="{ deep: $route.name == 'home' }">首页</li>
       <li><img src="./imgs/按键分割线.png" alt="" /></li>
-      <li @click="toMarket" :class="{ deep: $route.path == '/market' }">
+      <li @click="toMarket" :class="{ deep: $route.name == 'market' || $route.name == 'shopList' }">
         市场
       </li>
     </ul>
@@ -12,28 +12,33 @@
     <img class="search" src="./imgs/search.png" alt="" @click="changeSearch" v-if="Searchshow" />
     <transition enter-to-class="animate__animated animate__fadeInRight animate__faster"
     leave-to-class="animate__animated animate__fadeOutRight animate__faster">
-    <div v-show="isSearching">
-      <el-input v-model="input" placeholder="请输入内容"></el-input>
+    <div v-show="isSearching" class="searchWrap">
+      <el-input v-model="searchKey" placeholder="请输入内容" @keydown.enter.native="search"></el-input>
       <img class="search" src="./imgs/关闭1.png" alt="" @click="changeSearch" />
     </div>
     </transition>
     
 
-    <img class="right" src="./imgs/head.png" alt="" />
+    <img class="right" src="./imgs/head.png" alt="" @click="toUser"/>
   </div>
 </template>
 
 <script>
-import "animate.css";
+import "animate.css"
 export default {
   data() {
     return {
       Searchshow:true,
       isSearching: false,
-      input: "",
+      searchKey: "",
     };
   },
   methods: {
+    toUser(){
+      this.$router.push("User")
+
+    },
+
     toHome() {
       this.$router.push("/home");
     },
@@ -51,7 +56,8 @@ export default {
       }
       
     },
-  },
+   
+  }
 };
 </script>
 
@@ -60,15 +66,17 @@ export default {
   color: #666 !important;
 }
 
-
+.searchWrap{
+  width: 18rem;
+  display: flex;
+  align-items: center;
+}
 .el-input {
-  width: 16rem;
-  position: relative;
-  top: 1%;
-  vertical-align: middle;
+  flex: 1;
 }
 .right {
   padding-right: 2rem;
+  cursor: pointer;
 }
 .search {
   width: 2rem;

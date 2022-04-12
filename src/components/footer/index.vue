@@ -5,14 +5,15 @@
       <li>
         关于作者
         </li>
-      <li>前端初学者</li>
-      <li>欢迎交流</li>
+      <li><img src="@/../public/icons/email-fill.png">
+      <span>cc604849909@gmail.com</span></li>
     </ul>
-  </div>
+  </div> 
 </template>
 
 <script>
 export default {
+  name:'myfooter'
 
 }
 </script>
@@ -22,7 +23,6 @@ export default {
         width: 100%;
         background: rgb(244,244,244);
         height: 12rem;
-        margin-top: 2rem;
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -38,20 +38,29 @@ export default {
           flex: 1;
           margin-left: 6rem;
 
-          :first-child{
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: black;
-          }
+        
 
           li{
             margin-bottom: 0.6rem;
             cursor: pointer;
             transition: 0.2s linear;
+
+            &:first-of-type{
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: black;
+          }
             
             &:hover{
-              font-size: 1.3rem;
+              font-size: 1.03rem;
             }
+            img{
+              width: 1.2rem;
+              height: 1.2rem;
+              vertical-align: top;
+              
+            }
+            
           }
           
           

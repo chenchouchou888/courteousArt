@@ -74,11 +74,12 @@ export default {
       '$store.state.home.imgUrl'(){
           this.isChange = true
       }
-  }
+  },
+
 };
 </script>
 
-<style>
+<style lang="less" scoped>
 .v-enter,
 .v-leave-to {
   opacity: 0;
