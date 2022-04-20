@@ -141,7 +141,6 @@ import hezhi from './hezhi.json'
           overflow:'none',
           type:'category',
           axisLabel:{
-            rotate:30
           }
         },
         yAxis: {
