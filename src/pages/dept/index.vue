@@ -148,7 +148,7 @@ import hezhi from './hezhi.json'
         series: [
           {
             type: 'bar',
-            data: Object.values(clay).slice(1,Object.values(clay).length-1)
+            data: Object.values(clay).slice(1)
           }
           
         ]
