@@ -2,7 +2,7 @@
 <el-container>
   <el-aside width="200px" style="background-color: rgb(238, 241, 246)" >
     <el-menu :default-openeds="['1', '3']">
-      <el-menu-item @click="show(item)"><i class="el-icon-s-custom"></i>科室总表</el-menu-item>
+      <el-menu-item @click="show"><i class="el-icon-s-custom"></i>科室总表</el-menu-item>
       <el-submenu index="1">
         <template slot="title"><i class="el-icon-s-custom"></i>科室分表</template>   
      <el-menu-item-group>
@@ -16,9 +16,12 @@
 
   
      <el-main>
-       <div class="show">
+       <div class="main" v-show="!isShow">
+
        </div>
-       <div class="showtwo">
+       <div class="show" v-show="isShow">
+       </div>
+       <div class="showtwo" v-show="isShow">
        </div>
 
 
@@ -41,6 +44,7 @@ import hezhi from './hezhi.json'
         deptbox:deptbox,
         deptnotbox:deptnotbox,
         hezhi:hezhi,
+        isShow:false,
         Selection:{}
       }
     },
@@ -49,10 +53,11 @@ import hezhi from './hezhi.json'
     ,
 
     methods: {
-      show(item){
+      show(){
         // 基于准备好的dom，初始化echarts实例
-      var myChart = echarts.init(document.querySelector('.show'));
-      
+      this.isShow =  false
+      this.$nextTick(()=>{
+         var myChart = echarts.init(document.querySelector('.main'));
 
       // 指定图表的配置项和数据
       var option = {
@@ -61,11 +66,11 @@ import hezhi from './hezhi.json'
         },
         tooltip: {},
         legend: {
-          data: ['种类数']
+          data: ['盒装','非盒装']
         },
         xAxis: {
           // data: item.drugInfos.map((item)=>item.drugname),
-          data:this.name,
+          data:this.hezhi.map((item)=>item.deptname),
           overflow:'none',
           type:'category',
           axisLabel:{
@@ -78,10 +83,10 @@ import hezhi from './hezhi.json'
           {
             name: '种类数',
             type: 'bar',
-            data: this.valuee
+            data: this.hezhi.map((item)=>item.he)
           },
           {
-            data:this.valuee,
+            data:this.hezhi.map((item)=>item.others),
             type:'bar'
           }
         ]
@@ -89,9 +94,12 @@ import hezhi from './hezhi.json'
 
       // 使用刚指定的配置项和数据显示图表。
       myChart.setOption(option);
+      })
+     
       },
       departmentShow(item){
-        // 基于准备好的dom，初始化echarts实例
+      this.isShow= true
+      this.$nextTick(()=>{    // 基于准备好的dom，初始化echarts实例
       var myChart2 = echarts.init(document.querySelector('.showtwo'));
       var myChart = echarts.init(document.querySelector('.show'));
       let arr = item.infos
@@ -160,6 +168,9 @@ import hezhi from './hezhi.json'
 
 
       
+        
+      })
+    
 
       },
       unique(arr) {
@@ -284,6 +295,10 @@ import hezhi from './hezhi.json'
   .show,.showtwo{
     width: 100% !important;
     height: 23rem;
+  }
+  .main{
+    width: 100% !important;
+    height: 42rem;
   }
 
 </style>
