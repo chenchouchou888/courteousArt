@@ -14,8 +14,17 @@
     </el-menu>
   </el-aside>
 
-   <el-main class="show">
-   </el-main>
+  
+     <el-main>
+       <div class="show">
+       </div>
+       <div class="showtwo">
+       </div>
+
+
+
+     </el-main>
+   
   </el-container>
   
 </template>
@@ -24,13 +33,15 @@
 import info from './dept.json'
 import deptbox from './deptbox.json'
 import deptnotbox from'./deptnotbox.json'
+import hezhi from './hezhi.json'
   export default {
     data() {
       return {
         info:info,
         deptbox:deptbox,
         deptnotbox:deptnotbox,
-Selection:{}
+        hezhi:hezhi,
+        Selection:{}
       }
     },
     mounted(){
@@ -81,13 +92,15 @@ Selection:{}
       },
       departmentShow(item){
         // 基于准备好的dom，初始化echarts实例
+      var myChart2 = echarts.init(document.querySelector('.showtwo'));
       var myChart = echarts.init(document.querySelector('.show'));
       let arr = item.infos
+      let clay = this.hezhi.find((e)=>e.deptname == item.dept)
       // 指定图表的配置项和数据
       var option = {
         title: {
-          text:  item.dept
-        },
+          text: item.dept
+         },
         tooltip: {},
         legend: {
           data: ['盒装','非盒装']
@@ -115,9 +128,40 @@ Selection:{}
           }
         ]
       };
+      var optiontwo = {
+        title: {
+          text: '种类分布'
+         },
+        tooltip: {},
+        legend: {
+          data: []
+        },
+        xAxis: {
+          data:['盒','支','瓶','粒','袋','片','其他'],
+          overflow:'none',
+          type:'category',
+          axisLabel:{
+            rotate:30
+          }
+        },
+        yAxis: {
+        },
+        series: [
+          {
+            type: 'bar',
+            data: Object.values(clay).slice(1,Object.values(clay).length-1)
+          }
+          
+        ]
+      }
 
       // 使用刚指定的配置项和数据显示图表。
       myChart.setOption(option);
+      myChart2.setOption(optiontwo)
+
+
+      
+
       },
       unique(arr) {
    var newArr = [ arr[0] ]
@@ -236,7 +280,11 @@ Selection:{}
   .el-container{
     margin-top: 5rem;
     width:113rem;
-    height:40rem;
+    height:60rem;
+  }
+  .show,.showtwo{
+    width: 100% !important;
+    height: 23rem;
   }
 
 </style>
